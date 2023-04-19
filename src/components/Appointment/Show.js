@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.scss"
-import InterviewerList from "components/InterviewerList";
 
 
 export default function Show(props) {
