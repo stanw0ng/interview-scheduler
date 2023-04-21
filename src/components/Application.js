@@ -27,14 +27,15 @@ export default function Application(props) {
       )
   });
 
+  {/* function which receives day and changes value of day in state */}
   const setDay = day => setState({...state, day});
 
-  
   useEffect(() => {
     Promise.all([
       Promise.resolve(axios.get('/api/days')),
       Promise.resolve(axios.get('/api/appointments'))
     ]).then((all) => {
+      {/* fetches data then updates the state of with days and appointments */}
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data}));
     })
   }, [])
