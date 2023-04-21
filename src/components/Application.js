@@ -23,16 +23,16 @@ export default function Application(props) {
     Promise.all([
       Promise.resolve(axios.get('/api/days')),
       Promise.resolve(axios.get('/api/appointments')),
-      Promise.resolve(axios.get('/api/interviews'))
+      Promise.resolve(axios.get('/api/interviewers'))
     ]).then((all) => {
       {/* fetches data then updates the state of with days and appointments */}
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
     })
   }, [])
   
-  const appointments = getAppointmentsForDay(state, state.day)
+  const appointmentsForDay = getAppointmentsForDay(state, state.day)
 
-  const schedule = appointments.map((appointment) => {
+  const schedule = appointmentsForDay.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
   
     return (
