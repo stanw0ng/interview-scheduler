@@ -18,6 +18,24 @@ export default function Application(props) {
 
   function bookInterview(id, interview) {
     console.log(id, interview);
+    
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    }; 
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    {/* put path is written in appointment.js route */}
+    return axios.put(`api/appointments/${id}`, {interview:interview})
+    .then(res => {
+        setState({...state, appointments})
+        return res
+      })
+    .catch(err => console.log(err))
   }
 
   {/* function which receives day and changes value of day in state */}
