@@ -12,7 +12,7 @@ const useVisualMode = (initial) => {
   const transition = (nextMode, replace = false) => {
     if(!replace) {
       setMode(nextMode);
-      history.push(nextMode);
+      setHistory(prev => ([...prev, nextMode]));
     } else {
       setMode(nextMode);
     }
