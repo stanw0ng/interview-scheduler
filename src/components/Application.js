@@ -17,13 +17,13 @@ export default function Application(props) {
   });
 
   function bookInterview(id, interview) {
-    console.log(id, interview);
-    
+    {/* interview comes from the object defined in save function, below updates the interview for an appointment */}
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     }; 
 
+    {/* updates the appointment in appointments */}
     const appointments = {
       ...state.appointments,
       [id]: appointment
@@ -31,6 +31,27 @@ export default function Application(props) {
 
     {/* put path is written in appointment.js route */}
     return axios.put(`api/appointments/${id}`, {interview:interview})
+    .then(res => {
+        setState({...state, appointments})
+        return res
+      })
+    .catch(err => console.log(err))
+  }
+
+  {/* just need id to reference interview for deletion (since interview data will be null) */}
+  function cancelInterview(id) {
+    {/* rewrites interview to back null and avoids TypeError */}
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }; 
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.delete(`api/appointments/${id}`)
     .then(res => {
         setState({...state, appointments})
         return res
@@ -65,6 +86,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewersForDay}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
@@ -84,6 +106,7 @@ export default function Application(props) {
             value={state.day}
             setDay={setDay}
             bookInterview={bookInterview}
+            cancelInterview={cancelInterview}
           />
         </nav>
         <img
@@ -94,7 +117,12 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
+        <Appointment
+          key="last"
+          time="5pm"
+          bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
+        />
       </section>
     </main>
   );
