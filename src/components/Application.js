@@ -16,6 +16,10 @@ export default function Application(props) {
     appointments: {}
   });
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+
   {/* function which receives day and changes value of day in state */}
   const setDay = day => setState({...state, day});
   
@@ -42,6 +46,7 @@ export default function Application(props) {
         {...appointment}
         interview={interview}
         interviewers={interviewersForDay}
+        bookInterview={bookInterview}
       />
     );
   });
@@ -60,6 +65,7 @@ export default function Application(props) {
             days={state.days}
             value={state.day}
             setDay={setDay}
+            bookInterview={bookInterview}
           />
         </nav>
         <img
@@ -70,7 +76,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {schedule}
-        <Appointment key="last" time="5pm" />
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
       </section>
     </main>
   );
