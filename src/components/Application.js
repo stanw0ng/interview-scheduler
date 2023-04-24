@@ -35,7 +35,6 @@ export default function Application(props) {
         setState({...state, appointments})
         return res
       })
-    .catch(err => console.log(err))
   }
 
   {/* just need id to reference interview for deletion (since interview data will be null) */}
@@ -56,7 +55,6 @@ export default function Application(props) {
         setState({...state, appointments})
         return res
       })
-    .catch(err => console.log(err))
   }
 
   {/* function which receives day and changes value of day in state */}

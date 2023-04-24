@@ -7,6 +7,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -19,24 +20,24 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode (
     props.interview ? SHOW : EMPTY
   );
 
   function save(name, interviewer) {
-    if(name && interviewer) {
-      transition(SAVING);
+    const interview = {
+      student: name,
+      interviewer
+    };
 
-      const interview = {
-        student: name,
-        interviewer
-      };
+    transition(SAVING);
 
-      props.bookInterview(props.id, interview)
-        .then(() => transition(SHOW))
-    }
-
+    props.bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch(() => transition(ERROR_SAVE, true))
   }
 
   function edit() {
@@ -46,9 +47,10 @@ export default function Appointment(props) {
   function remove() {
     {/* will only trigger if confirm in CONFIRM is clicked  */}
     if (mode === CONFIRM) {
-      transition(DELETING)
+      transition(DELETING, true)
       props.cancelInterview(props.id)
-      .then(() => transition(EMPTY))
+        .then(() => transition(EMPTY))
+        .catch(() => transition(ERROR_DELETE, true))
     } else {
       {/* transitions to CONFIRM before actually deleting */}
       transition(CONFIRM);      
@@ -90,6 +92,18 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onSave={save}
           onCancel={back}
+        />
+      }
+      {mode === ERROR_SAVE && 
+        <Error 
+          message="Could not create appointment"
+          onClose={back}
+        />
+      }
+      {mode === ERROR_DELETE && 
+        <Error 
+          message="Could not cancel appointment"
+          onClose={back}
         />
       }
     </article>
