@@ -89,7 +89,7 @@ export default {
     return Promise.resolve({
       status: 204,
       statusText: "This is fake",
-      data: fixtures.interview
+      data: fixtures.appointments
     })
   }),
 };
