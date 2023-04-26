@@ -87,8 +87,16 @@ export default {
   
   put: jest.fn(url => {
     return Promise.resolve({
-      status: 204,
-      statusText: "This is fake",
+      status: 200,
+      statusText: "Successfully edited fake data",
+      data: fixtures.appointments
+    })
+  }),
+
+  delete: jest.fn(url => {
+    return Promise.resolve({
+      status: 200,
+      statusText: "Successfully deleted fake data",
       data: fixtures.appointments
     })
   }),
