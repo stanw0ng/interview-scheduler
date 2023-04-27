@@ -7,7 +7,7 @@ Interview Scheduler is a single-page React application designed to streamline th
 ## Setup
 
 1. Install dependencies with `npm install`.
-2. Clone this repo and follow the README to install and setup the API server/database
+2. Clone [this repo](https://github.com/lighthouse-labs/scheduler-api) and follow the README to install and setup the API server/database
 3. Start the Interview Scheduler in the root folder using `npm start`
 4. Start the cloned Scheduler API in its root folder using `npm start`
 
