@@ -6,13 +6,13 @@ const state = {
       id: 1,
       name: "Monday",
       appointments: [1, 2, 3],
-      interviewers:[2,4]
+      interviewers: [2, 4]
     },
     {
       id: 2,
       name: "Tuesday",
       appointments: [4, 5],
-      interviewers:[1,3,4]
+      interviewers: [1, 3, 4]
     }
   ],
 
@@ -33,7 +33,7 @@ const state = {
   },
 
   interviewers: {
-    "1": {  
+    "1": {
       id: 1,
       name: "Sylvia Palmer",
       avatar: "https://i.imgur.com/LpaY82x.png"
@@ -100,7 +100,6 @@ test("getInterview returns null if no interview is booked", () => {
   const result = getInterview(state, state.appointments["2"].interview);
   expect(result).toBeNull();
 });
-
 
 test("getInterviewersForDay returns an array", () => {
   const result = getInterviewersForDay(state, "Monday");

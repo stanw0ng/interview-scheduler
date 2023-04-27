@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./styles.scss"
+import "./styles.scss";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
@@ -9,15 +9,15 @@ export default function Form(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
-  const reset = function(){
+  const reset = function() {
     setStudent("");
     setInterviewer(null);
-  }
+  };
 
-  const cancel = function(){
+  const cancel = function() {
     reset();
     props.onCancel();
-  }
+  };
 
   function validate() {
 
@@ -31,9 +31,9 @@ export default function Form(props) {
       return;
     }
 
-    setError("")
+    setError("");
     props.onSave(student, interviewer);
-    
+
   }
 
   return (
@@ -51,9 +51,9 @@ export default function Form(props) {
           />
           <section className="appointment__validation">{error}</section>
         </form>
-        <InterviewerList 
+        <InterviewerList
           interviewers={props.interviewers}
-          value={interviewer} 
+          value={interviewer}
           onChange={setInterviewer}
         />
       </section>

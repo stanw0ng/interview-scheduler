@@ -15,7 +15,7 @@ const fixtures = {
       spots: 1
     }
   ],
-  
+
   appointments: {
     "1": { id: 1, time: "12pm", interview: null },
     "2": {
@@ -82,13 +82,13 @@ export default {
       });
     }
   }),
-  
+
   put: jest.fn(url => {
     return Promise.resolve({
       status: 200,
       statusText: "Successfully edited fake data",
       data: fixtures.appointments
-    })
+    });
   }),
 
   delete: jest.fn(url => {
@@ -96,6 +96,6 @@ export default {
       status: 200,
       statusText: "Successfully deleted fake data",
       data: fixtures.appointments
-    })
+    });
   }),
 };
