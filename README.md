@@ -64,24 +64,21 @@ npm run storybook
 ## Screenshots
 
 
-![Landing Page]()
+![Landing Page](docs/Scheduler_Home.png)
 _This is the home page. Creating an appointment begins with clicking the + button available at each time slot. Additionally a different day can be picked on the left side of the page. Notice how each day also displays how many vacant time slots are avaiable to make an appointment._
 
-![Adding Appointment]()
+![Adding Appointment](docs/Scheduler_New.png)
 _After clicking on the + button, users are presented with this form._
 
-![Appointment Entry]()
+![Appointment Entry](docs/Scheduler_Entry.png)
 _Once a name and an interviewer is selected, the user can click "Save" to schedule an appointment and store it in the database._
 
-![Saving Appointment]()
+![Saving Appointment](docs/Scheduler_Saving.png)
 
-![Saved Appointment]()
+![Saved Appointment](docs/Scheduler_Saved.png)
 _After the appointment is saved, the appointment will be visible in the schedule. Users can edit their appointments when clicking the pen and paper icon or delete their appointment when clicking the trash icon._
 
-![Delete Appointment]()
-_Clicking on the trash icon mentioned above,users can to delete their appointments._
+![Delete Confirm](docs/Scheduler_Confirm.png)
+_Clicking on the trash icon mentioned above,users can to delete their appointments. Users will need to confirm if they want to delete an appointment or not._
 
-![Delete Confirm]()
-_Users will need to confirm if they want to delete an appointment or not._
-
-![Deleting Appointment]()
+![Deleting Appointment](docs/Scheduler_Deleting.png)
