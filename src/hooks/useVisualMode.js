@@ -15,11 +15,11 @@ const useVisualMode = (initial) => {
 
   const back = () => {
     if (history.length > 1) {
-      history.pop();
-      setMode(history[history.length - 1]);
+      const newHistory = history.slice(0, -1);
+      setHistory(newHistory);
+      setMode(newHistory[newHistory.length - 1]);
     }
   };
-
 
   return { mode, transition, back };
 };
